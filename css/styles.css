@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+    font-family: Montserrat;
+}
+
+body{
+    margin: 0 2rem;
+    color: #e5e1e1;
+    background: radial-gradient(circle, #120333 0%, #0f0c0c 100%);
+}
+
+h1{
+    margin: 3rem auto;
+    width: 28rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h1 span{
+    font-weight: 700;
+}
+
+.search-bar{
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .search-bar{
+        margin: 0 auto;
+        width: 50%;
+    }
+}
+
+.search-bar__input{
+    padding: .5rem 1rem;
+    width: 100%;
+    font-size: 1.4rem;
+    color: inherit;
+    border: .1rem solid #e5e1e1;
+    border-radius: 1.5rem;
+    background: transparent;
+}
+
+.search-bar__input::placeholder{
+    font-style: italic;
+}
+
+.search-bar svg{
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+}
+
+.movies{
+    margin: 0 auto;
+}
+
+.movies__container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.4rem;
+}
+
+@media (min-width: 768px) {
+    .movies__container{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .movies__container{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.movies__container div{
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.movies__container div img{
+    width: 100%;
+    border-radius: .5rem;
+    transition: transform .3s ease-in-out;
+}
+
+.movies__container div img:hover{
+    transform: scale(.98);
+}
