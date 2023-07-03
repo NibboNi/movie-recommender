@@ -54,7 +54,8 @@ function CreateMovieCard(results = []){
                 movieCover.classList.toggle("movie-added");
             }, 300);
 
-            if(!document.body.contains(document.querySelector(".selected-movies"))) CreateSelectedMoviesList(); 
+            if(!document.body.contains(document.querySelector(".selected-movies"))) CreateSelectedMoviesList();
+            // else if( moviesID.length <= 0 && ) document.querySelector(".selected-movies").remove();
 
             if(!moviesID.includes(result.id)){
                 moviesID.push(result.id);
@@ -78,14 +79,15 @@ function CreateMovieCard(results = []){
 function CreateSelectedMoviesList(){
     const selectedMovies = document.createElement("div");
     const selectedMoviesInfo = document.createElement("div");
+    const selectedMoviesInfoTitle = document.createElement("h2");
+    const selectedMoviesInfoIcon = document.createElement("i");
     const moviesList = document.createElement("ul");
+
+    selectedMoviesInfoTitle.textContent = "Selected Movies";
+    selectedMoviesInfoIcon.classList.add("fa-solid", "fa-film");
     
-    selectedMoviesInfo.innerHTML = `
-        <h2>Selected Movies</h2>
-        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="currentcolor">
-            <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"/>
-        </svg>
-    `;
+    selectedMoviesInfo.appendChild(selectedMoviesInfoTitle);
+    selectedMoviesInfo.appendChild(selectedMoviesInfoIcon);
 
     selectedMovies.classList.add("selected-movies");
     selectedMoviesInfo.classList.add("selected-movies__info");
@@ -100,18 +102,23 @@ function CreateSelectedMoviesList(){
 function FillSelectedMoviesList(movieName, id){
     const list = document.querySelector(".selected-movies__list");
     const movie = document.createElement("li");
+    const icon = document.createElement("i");
+    icon.classList.add("fa-solid", "fa-circle-xmark");
     movie.textContent = `${movieName}`;
+    movie.appendChild(icon);
     movie.onclick = () => {
         movie.remove();
         moviesID = moviesID.filter( movie => movie != id);
         if(moviesID.length >= 5){
             recommendBtn.classList.remove("recommendation--hide");
             recommendBtn.classList.add("recommendation--show");
-        } 
+        }
         else{
             recommendBtn.classList.add("recommendation--hide");
             recommendBtn.classList.remove("recommendation--show");
         }
+
+        if(moviesID.length <= 0) document.querySelector(".selected-movies").remove();
     }
     list.appendChild(movie);
 }
