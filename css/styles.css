@@ -56,8 +56,6 @@ a:hover svg{
 }
 
 svg{
-    width: 2.4rem;
-    height: 2.4rem;
     color: white;
 }
 
@@ -111,6 +109,7 @@ svg{
     top: 50%;
     right: 1rem;
     transform: translateY(-50%);
+    font-size: 1.6rem;
 }
 
 .movies{
@@ -161,13 +160,44 @@ svg{
 
 .recommendation{
     margin-top: 2rem;
-    
-    overflow: hidden;
+    position: relative;
+    left: 50%;
     cursor: pointer;
+    transform: translateX(-50%);
+}
+
+.recommendation::before{
+    content: "";
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    bottom: -.5rem;
+    left: 0;
+    background: linear-gradient(90deg, rgba(75,75,255,1) 0%, rgba(192,106,255,1) 100%);
+    border-radius: .5rem;
+    animation: infinite-line 3s ease-in-out infinite;
+}
+
+@keyframes infinite-line {
+    0%, 5%{
+        width: 0%;
+    }
+    50%, 75%{
+        width: 100%;
+        left: 0;
+    }
+    100%{
+        width: 0%;
+        left: 100%;
+    }
 }
 
 .recommendation h2{
     margin: 0;
+}
+
+.recommendation svg{
+    font-size: 2.4rem;
 }
 
 .recommendation--hide{
@@ -175,8 +205,7 @@ svg{
 }
 
 .recommendation--show{
-    display: flex;
-    flex-direction: column-reverse;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
@@ -204,6 +233,10 @@ svg{
     margin: 0;
 }
 
+.selected-movies__info svg{
+    font-size: 2.4rem;
+}
+
 .selected-movies__list{
     margin: 0;
     width: 100%;
@@ -223,8 +256,12 @@ svg{
 
 .selected-movies__list li{
     padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     flex-shrink: 0;
     font-size: 1.6rem;
+    font-weight: 600;
     background: linear-gradient(90deg, rgba(75,75,255,1) 0%, rgba(192,106,255,1) 100%);
     border-radius: 1.5rem;
     cursor: pointer;
@@ -239,6 +276,15 @@ svg{
     display: flex;
     justify-content: space-around;
     text-align: center;
+}
+
+.footer a{
+    display:  flex;
+    align-items: baseline;
+}
+
+.footer svg{
+    font-size: 2.4rem; 
 }
 
 @media (min-width: 768px) {
